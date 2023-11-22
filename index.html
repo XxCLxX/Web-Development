@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Web Development</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <h1 class="title">ReactJS</h1>
+  <section>
+    <h2>Background</h2>
+    <p>React.js is a JavaScript library for developing user interfaces. I began learning React.js in order to construct
+      dynamic and efficient web applications using a component-based architecture.</p>
+
+    <h2>Features</h2>
+    <!--<p>[List features of the topic]</p>-->
+    <ul>
+      <li>Declarative: When the underlying data changes, React automatically updates and renders the components,
+        allowing you to describe how your UI should look. This declarative approach makes code more predictable and
+        understandable.</li>
+      <li>Component-Based: React uses a component-based architecture, which divides UIs into reusable and independent
+        components. Each component handles its own state, which aids with the creation of complicated UIs by breaking
+        them down into smaller, more manageable parts.</li>
+      <li>Reusable Components: React promotes the production of reusable components, resulting in a code structure that
+        is modular and scalable. Components can be built and reused across the application, resulting in more manageable
+        code.</li>
+      <li>Virtual DOM: To optimize the rendering process, React uses a virtual representation of the DOM. Instead of
+        updating the entire DOM when a change occurs, React first updates a virtual DOM and then calculates the most
+        efficient way to update the actual DOM. This reduces the number of manipulations required, thereby enhancing
+        performance.</li>
+    </ul>
+
+    <h2>Comparison</h2>
+    <!--<p>[Describe pros & cons of most important feature from your point of view in a form of table]</p>-->
+    <table>
+      <thead>
+        <tr>
+          <th>Pros</th>
+          <th>Example source code</th>
+          <th>Extra comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            The component-based architecture of React encourages code reuse and
+            maintainability. Components encapsulate their own functionality and can be readily reused across different
+            portions of an application.
+          </td>
+          <td>
+            <pre>
+              <code>
+      return (
+          &lt;Router&gt;
+            &lt;div className="container"&gt;
+              &lt;Header onAdd={() => setShowAddTask(!showAddTask)}
+                showAdd={showAddTask} /&gt;
+              &lt;Routes&gt;
+                &lt;Route path='/' element={
+                  &lt;&gt;
+                    {showAddTask && &lt;AddTask onAdd={addTask} /&gt;}
+                    {tasks.length > 0 ? (
+                      &lt;Tasks
+                        tasks={tasks}
+                        onDelete={deleteTask}
+                        onToggle={toggleReminder} /&gt;) : ('No Tasks to Show')}
+                  &lt;/&gt;
+                } /&gt;
+                &lt;Route path='/about' elemet=&lt;About /&gt; /&gt;
+              &lt;/Routes&gt;
+              &lt;Footer /&gt;
+            &lt;/div&gt;
+          &lt;/Router&gt;
+        );
+              </code>
+          </pre>
+
+          </td>
+          <td>
+            <p>ToDo List application seperated into components</p>
+            <img src="/images/react-components.png">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            React employs a virtual DOM to reduce direct manipulation of the actual DOM. This improves performance by
+            minimising unneeded re-renders and updates.
+          </td>
+          <td>
+            <pre>
+                <code>
+      const MyComponent = () => {
+      const handleClick = () => {
+      // Update state and trigger a re-render
+      };
+        
+      return(
+        &lt;div&gt;
+          &lt;button onClick={handleClick}&gt;Click me&lt;/button&gt;
+        &lt;/div&gt;
+          );
+        };
+                </code>
+            </pre>
+          </td>
+          <td>N/A</td>
+        </tr>
+
+        <tr>
+          <td>
+            Since React has a huge and active community, there are several third-party libraries, tools, and resources
+            available. This makes it easier to find answers to frequent problems and keep current on best practises.
+          </td>
+          <td>N/A</td>
+          <td>
+            <p>List of tools that range from icons to internationalization.</p>
+            <img src="/images/list-of-tools.png">
+          </td>
+        </tr>
+      </tbody>
+
+      <thead>
+        <tr>
+          <th>Cons</th>
+          <th>Example source code</th>
+          <th>Extra comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            React primarily deals with the view layer. If you need a full-stack solution, you'll need to combine React
+            with other libraries or frameworks to handle things like routing and state management.
+          </td>
+          <td>
+            <pre>
+              <code>
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from '../redux/counterSlice'
+
+export default configureStore({
+    reducer: {
+      counter: counterReducer,
+    },
+  });
+              </code>
+            </pre>
+
+            <pre>
+              <code>
+import { createSlice } from '@reduxjs/toolkit'
+
+export const counterSlice = createSlice({
+    name: 'counter',
+    initialState: {
+        value: 0,
+    },
+    reducers: {
+        increment: state => {
+            state.value += 1
+        },
+        decrement: state => {
+            state.value -= 1
+        }
+    }
+})
+
+export const { increment, decrement } = counterSlice.actions
+export const selectCount = (state) => state.counter.value
+export default counterSlice.reducer
+              </code>
+            </pre>
+
+          </td>
+          <td>
+            <p>Diagram of state management in React with Reedux.</p>
+            <img src="/images/react-redux.png" width="450">
+          </td>
+        </tr>
+        <tr>
+
+        <tr>
+          <td>Steep learning curve of React can be attributable to a number of causes. To begin, developers
+            must understand JavaScript ES6 and JSX syntax, which may be confusing to those accustomed to traditional
+            HTML and JavaScript. The library's emphasis on component-based architecture and the concept of a virtual DOM
+            necessitates a shift in attitude and a grasp of the complexities of one-way data binding. React projects
+            frequently need additional tools and a complex build process, which adds to the learning curve. The vast
+            ecosystem with regular updates, as well as the requirement to stay current with documentation, add to the
+            initial hurdles. </td>
+          <td>N/A</td>
+          <td><img src="/images/learning-curve.png"></td>
+        </tr>
+        <tr>
+
+          <td>Large file size for small projects</td>
+          <td>
+            <pre><code>import React from 'react';</code></pre>
+          </td>
+          <td>
+            <p>Properties details of a ToDo List application created with React.</p>
+            <img src="/images/react-todo-file-size.png">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Conclusion</h2>
+    <p>React.js is ideal for my requirements because it provides a flexible and efficient way to design user interfaces,
+      particularly for complex and dynamic web applications.</p>
+
+    <h2>Links</h2>
+    <ol>
+      <li><a href="https://react.dev/">React Documentation</a></li>
+      <li><a href="https://youtu.be/pgAvVxowaYU">ReactJS Tutorial for Beginners - Getting Started with React</a></li>
+      <li><a href="https://github.com/XxCLxX/react-todo">To-Do List with ReactJS</a></li>
+      <li><a href="www.google.com">2nd-Hand E-commerce Application</a></li>
+    </ol>
+
+    <h2>Feedback</h2>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="feedback">Feedback:</label>
+      <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </section>
+</body>
+
+</html>
