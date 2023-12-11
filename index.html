@@ -226,32 +226,22 @@ export default counterSlice.reducer
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="feedback">Feedback:</label>
+      <label for="selection">Selection:</label>
+      <select id="selection" name="selection" required>
+        <option value="student">Student</option>
+        <option value="bachelor">Bachelor</option>
+      </select>
+
+      <label for="feedback">Comments:</label>
       <textarea id="feedback" name="feedback" rows="4" required></textarea>
 
       <button type="button" onclick="submitFeedback()">Submit Feedback</button>
     </form>
 
     <div id="userFeedback" class="user-feedback"></div>
+    <div id="surveyData" class="survey-data"></div>
 
-    <!--Feedback Function-->
-    <script>
-      function submitFeedback() {
-
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var feedback = document.getElementById("feedback").value;
-
-        var feedbackElement = document.createElement("div");
-        feedbackElement.innerHTML = "<strong>Name:</strong> " + name +
-          "<br><strong>Email:</strong> " + email +
-          "<br><strong>Feedback:</strong> " + feedback + "<hr>";
-
-        document.getElementById("userFeedback").appendChild(feedbackElement);
-
-        document.getElementById("feedbackForm").reset();
-      }
-    </script>
+    <script src="script.js"></script>
   </section>
 </body>
 

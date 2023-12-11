@@ -97,11 +97,32 @@ textarea {
     resize: vertical;
 }
 
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/* Optional: Add a hover effect for better interaction */
+select:hover {
+    border-color: #007bb5; /* Change border color on hover */
+}
+
 button {
+    color: #fff;
     background-color: #00b0f0;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s ease; 
+}
+
+button:hover {
+    background-color: #005a80;
 }
