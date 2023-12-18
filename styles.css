@@ -107,9 +107,8 @@ select {
     font-size: 15px;
 }
 
-/* Optional: Add a hover effect for better interaction */
 select:hover {
-    border-color: #007bb5; /* Change border color on hover */
+    border-color: #007bb5; 
 }
 
 button {
@@ -125,4 +124,30 @@ button {
 
 button:hover {
     background-color: #005a80;
+}
+
+/*Style for Survey*/
+h3{
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 0px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3498db;
+    border-radius: 2%;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #3498db;
+    color: #fff;
 }

@@ -33,21 +33,23 @@ function createFeedbackElement(name, email, selection, feedback) {
         <strong>Name:</strong> ${name}<br>
         <strong>Email:</strong> ${email}<br>
         <strong>Selection:</strong> ${selection}<br>
-        <strong>Feedback:</strong> ${feedback}<hr>
+        <strong>Comment:</strong> ${feedback}<hr>
     `;
     return feedbackElement;
 }
 
 //--Survey Function--
-function populateSurvey(selection) {
+function populateSurvey() {
+    const selectOption = document.getElementById("selection").value;
+
     fetchSurvey()
         .then(data => {
             console.log('Data:', data);
             const surveyElement = document.getElementById('surveyData');
 
             const selectedSurvey = data.find(survey => {
-                return (selection === 'student' && survey.id === 1) ||
-                    (selection === 'bachelor' && survey.id === 2);
+                return (selectOption === 'student' && survey.id === 1) ||
+                    (selectOption === 'bachelor' && survey.id === 2);
             });
 
             console.log('Selected Survey:', selectedSurvey);
@@ -58,14 +60,11 @@ function populateSurvey(selection) {
                         console.log('Questions Data:', questionData);
 
                         const surveyContainer = createSurveyContainer(selectedSurvey, questionData);
+                        surveyElement.innerHTML = '';
                         surveyElement.appendChild(surveyContainer);
                     })
                     .catch(error => console.error('Error fetching JSON:', error));
             }
-            /*if (selectedSurvey) {
-                const surveyContainer = createSurveyContainer(selectedSurvey);
-                surveyDataElement.appendChild(surveyContainer);
-            }*/
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
@@ -74,24 +73,37 @@ function createSurveyContainer(survey, questionData) {
     const surveyContainer = document.createElement('div');
     surveyContainer.innerHTML = `
         <h2>${survey.title}</h2>
-        <p>${survey.desc}</p>
-        <p>${survey.nq}</p>
+        <h3>${survey.desc}</h3>
         ${createQuestionList(survey.qs, questionData)}
         <hr>
     `;
-    //<p>${survey.qs.join('<br>')}</p>
     return surveyContainer;
 }
+//<p>${survey.nq}</p>
 
 function createQuestionList(questionIds, questionData) {
     const questionsList = questionIds.map(questionId => {
         const question = questionData.find(q => q.id === parseInt(questionId));
         if (question) {
-            return `<p>${question.title}</p>
-                    <p>${question.description}</p><br>`;
+            return `
+                <strong><label for="question${question.id}">${question.title}</label></strong>
+                <p>${question.description}</p>
+                ${createQuestionElement(question)}`
         }
         return '';
     }).join('');
 
     return questionsList;
+}
+
+function createQuestionElement(question) {
+    if (question.type === 'rate') {
+        return question.options.map(option => `
+            <input type="radio" name="question${question.id}" value="${option}" id="question${question.id}-${option}">
+            <label for="question${question.id}-${option}">${option}</label>
+        `).join('');
+    } else if (question.type === 'free') {
+        return `<textarea name="question${question.id}" rows="4"></textarea>`;
+    }
+    return '';
 }
