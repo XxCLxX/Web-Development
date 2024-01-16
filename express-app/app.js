@@ -9,13 +9,33 @@ const questions = require('./data/questions.json');
 
 const app = express();
 const port = 3000;
+const path = require('path');
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.send("Hello World!");
+});*/
+
+//Display Main Page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
+app.get("/styles.css", (req, res) => {
+  res.sendFile(path.join(__dirname, '../styles.css'));
+});
+
+app.get("/script.js", (req, res) => {
+  res.sendFile(path.join(__dirname, '../script.js'));
+});
+
+app.get("/images/*", (req, res) => {
+  const imagePath = req.params[0]; 
+  res.sendFile(path.join(__dirname, '../images', imagePath));
+});
+
+// Handle HTML method & URL
 app.get('/surveys', (req, res) => {
   res.json(surveys);
 });
