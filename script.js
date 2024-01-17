@@ -1,5 +1,5 @@
-const surveyURL = 'https://my-json-server.typicode.com/depth0/survey1/surveys';
-const questionUrl = 'https://my-json-server.typicode.com/depth0/survey1/questions';
+const surveyURL = 'http://localhost:3000/surveys'; 
+const questionUrl = 'http://localhost:3000/questions';
 
 async function fetchSurvey() {
     const response = await fetch(surveyURL);
