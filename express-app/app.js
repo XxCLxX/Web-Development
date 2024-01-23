@@ -1,9 +1,7 @@
-//import express from 'express';
-//import surveys from './data/surveys.json';
-//import questions from './data/questions.json';
-
 const express = require('express');
 const { find } = require('lodash');
+const basicAuth = require('express-basic-auth');
+
 const surveys = require('./data/surveys.json');
 const questions = require('./data/questions.json');
 
@@ -11,11 +9,12 @@ const app = express();
 const port = 3000;
 const path = require('path');
 
-app.use(express.json());
-
-/*app.get('/', (req, res) => {
-  res.send("Hello World!");
-});*/
+//Basic authentication
+app.use(basicAuth({
+  users: { 'user': 'password123' },
+  challenge: true,
+  unauthorizedResponse: 'Unauthorized Access',
+}));
 
 //Display Main Page
 app.get("/", (req, res) => {
@@ -31,7 +30,7 @@ app.get("/script.js", (req, res) => {
 });
 
 app.get("/images/*", (req, res) => {
-  const imagePath = req.params[0]; 
+  const imagePath = req.params[0];
   res.sendFile(path.join(__dirname, '../images', imagePath));
 });
 

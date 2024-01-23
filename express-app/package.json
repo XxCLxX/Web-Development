@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "express-basic-auth": "^1.2.1",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/express-jwt": "^7.4.2"
   }
 }
